@@ -1,31 +1,36 @@
-# Online Tiffin Service Mangement System Using Django
+# 🍱 Tiffin Ease - Online Tiffin Service Management System (Django)
 
-Online Tiffin Service System is a Django based web application which strives to make an online portal for both vendors and customers. Using Interactive GUI anyone can quickly learn to use the complete system. This system will give power and flexibility to the administrator to manage the entire system from a single online portal.
+[Tiffin Ease](https://tiffin-ease.onrender.com/) is a Django-based web application designed to streamline the online ordering and management of tiffin (meal) services. It provides an interactive interface for customers, vendors, and administrators to manage and track orders efficiently.
 
-In Online Tiffin Service System we use Python Django and SQLite Database. This project keeps the records of Tiffin’s orders. This project has three modules i.e. admin, vendor and customers.
+### 🔗 Live Demo
+🌐 **Check out the live project here**: [https://tiffin-ease.onrender.com/](https://tiffin-ease.onrender.com/)
 
-Running the File:
+---
 
-To run the file use the command:
-python manage.py runserver
+### 📌 Features
 
+- 👨‍💼 **Admin Portal**: Full control over users, vendors, and order management.
+- 🛍️ **Vendor Dashboard**: Vendors can manage their menus and view incoming orders.
+- 🧑‍🍳 **Customer Portal**: Users can sign up, browse menus, and place tiffin orders easily.
+- 📊 **Order Tracking**: Real-time status updates on orders.
+- 📁 **Secure Login/Signup System**
 
-Admin eamil - admin@admin.com
+---
 
-admin username - admin
+### 🛠️ Tech Stack
 
-admin -admin123
+- **Backend**: Python Django
+- **Frontend**: HTML, CSS, Bootstrap
+- **Database**: SQLite3
+- **Hosting**: Render.com
 
-Vendor ID
+---
 
-11910617
-11910616
-11910615
+### 🚀 Getting Started
 
+To run this project locally:
 
-If your system doesn't have django installed. Please refer this link: https://docs.djangoproject.com/en/4.0/howto/windows/
-
-
-
-
-
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/tiffin-ease.git
+   cd tiffin-ease
