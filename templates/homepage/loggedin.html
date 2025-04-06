@@ -1,0 +1,299 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% if request.user.is_authenticated %}
+<li class="nav-item active">
+    <a href="#" class="nav-link">Bon appetite, {{ request.user }}!</a>
+</li>
+<li class="nav-item">
+    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+</li>
+{% else %}
+<li class="nav-item">
+    <a href="{% url 'admin:index' %}" class="nav-link">Login</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<style>
+    .welcome-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'images/carousel.jpeg' %}");
+        background-size: cover;
+        background-position: center;
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .welcome-text {
+        font-size: 3.5rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        animation: fadeInUp 1s ease;
+    }
+
+    .welcome-popup {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        animation: slideDown 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .welcome-popup h2 {
+        font-size: 1.5rem;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .welcome-popup p {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .welcome-message {
+        text-align: center;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        animation: slideIn 1s ease;
+    }
+
+    .welcome-message h2 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    .welcome-message p {
+        font-size: 1.2rem;
+        margin: 0;
+        opacity: 0.9;
+    }
+
+    .plan-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+
+    .plan-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .plan-card .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .plan-card .card-body {
+        padding: 1.5rem;
+        background: white;
+    }
+
+    .plan-card .card-text {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .plan-button {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        background: #ff6b6b;
+        color: white;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        font-weight: 600;
+    }
+
+    .plan-button:hover {
+        background: #ff5252;
+        color: white;
+        transform: scale(1.05);
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+        color: #333;
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translate(-50%, -100%);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .welcome-text {
+            font-size: 2.5rem;
+        }
+        .welcome-section {
+            height: 40vh;
+        }
+        .plan-card {
+            margin: 1rem;
+        }
+    }
+</style>
+
+<div class="welcome-section">
+    <div class="welcome-text">
+        Welcome to Tiffin Service
+    </div>
+</div>
+
+<div class="welcome-popup">
+    <h2>Welcome, {{ request.user }}! 👋</h2>
+    <p>Ready to explore our delicious meal plans? 🍽️</p>
+</div>
+
+<div class="container">
+    <h2 class="section-title">Choose Your Meal Plan</h2>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="plan-card card">
+                <img class="card-img-top" src="{% static 'images/free1.jpg' %}" alt="Free Trial">
+                <div class="card-body">
+                    <h5 class="card-title">Free Trial</h5>
+                    <p class="card-text">Experience our service with a 2-day free trial plan.</p>
+                    <div class="text-center">
+                        <a href="{% url 'Free' %}" class="plan-button">Start Free Trial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="plan-card card">
+                <img class="card-img-top" src="{% static 'images/thali_1.jpg' %}" alt="2 Weeks Veg">
+                <div class="card-body">
+                    <h5 class="card-title">2 Weeks Vegetarian</h5>
+                    <p class="card-text">Perfect for trying out our vegetarian menu.</p>
+                    <div class="text-center">
+                        <a href="{% url 'TwoWeekVeg' %}" class="plan-button">₹499</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="plan-card card">
+                <img class="card-img-top" src="{% static 'images/th3.jpg' %}" alt="1 Month Veg">
+                <div class="card-body">
+                    <h5 class="card-title">1 Month Vegetarian</h5>
+                    <p class="card-text">A month of delicious vegetarian meals.</p>
+                    <div class="text-center">
+                        <a href="{% url 'OneMonthVeg' %}" class="plan-button">₹799</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="plan-card card">
+                <img class="card-img-top" src="{% static 'images/th25.jpg' %}" alt="1 Month Veg+NonVeg">
+                <div class="card-body">
+                    <h5 class="card-title">1 Month Veg + Non-Veg</h5>
+                    <p class="card-text">The perfect balance of vegetarian and non-vegetarian meals.</p>
+                    <div class="text-center">
+                        <a href="{% url 'OneMonthVegNonVeg' %}" class="plan-button">₹999</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="plan-card card">
+                <img class="card-img-top" src="{% static 'images/th24.jpg' %}" alt="3 Months Veg">
+                <div class="card-body">
+                    <h5 class="card-title">3 Months Vegetarian</h5>
+                    <p class="card-text">Long-term vegetarian meal plan with great value.</p>
+                    <div class="text-center">
+                        <a href="{% url 'ThreeMonthVeg' %}" class="plan-button">₹2499</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="plan-card card">
+                <img class="card-img-top" src="{% static 'images/th16.jpg' %}" alt="3 Months Veg+NonVeg">
+                <div class="card-body">
+                    <h5 class="card-title">3 Months Veg + Non-Veg</h5>
+                    <p class="card-text">Our most comprehensive long-term meal plan.</p>
+                    <div class="text-center">
+                        <a href="{% url 'ThreeMonthVegNonveg' %}" class="plan-button">₹2699</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

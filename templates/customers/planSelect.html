@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Plan - Tiffin Service</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --dark-color: #2d3436;
+            --light-color: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+            min-height: 100vh;
+        }
+
+        .pricing-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("{% static 'images/carousel.jpeg' %}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plan-name {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .plan-duration {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            margin-bottom: 0.8rem;
+            color: #555;
+        }
+
+        .plan-features i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        .select-plan-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .select-plan-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-header">
+        <div class="container">
+            <h1 class="pricing-title">Choose Your Perfect Plan</h1>
+            <p class="pricing-subtitle">Delicious and nutritious meals delivered right to your doorstep</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <h3 class="plan-name">Basic Plan</h3>
+                    <div class="plan-price">₹1499</div>
+                    <div class="plan-duration">per month</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i>Daily Fresh Meals</li>
+                        <li><i class="fas fa-check"></i>Vegetarian Options</li>
+                        <li><i class="fas fa-check"></i>Free Delivery</li>
+                        <li><i class="fas fa-check"></i>Hygiene Guaranteed</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPlan('basic')">Select Plan</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <h3 class="plan-name">Premium Plan</h3>
+                    <div class="plan-price">₹1999</div>
+                    <div class="plan-duration">per month</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i>All Basic Features</li>
+                        <li><i class="fas fa-check"></i>Non-Veg Options</li>
+                        <li><i class="fas fa-check"></i>Weekend Special Meals</li>
+                        <li><i class="fas fa-check"></i>Priority Delivery</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPlan('premium')">Select Plan</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <h3 class="plan-name">Family Plan</h3>
+                    <div class="plan-price">₹3499</div>
+                    <div class="plan-duration">per month</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i>All Premium Features</li>
+                        <li><i class="fas fa-check"></i>4 Person Meals</li>
+                        <li><i class="fas fa-check"></i>Customizable Menu</li>
+                        <li><i class="fas fa-check"></i>24/7 Support</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPlan('family')">Select Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container" id="planForm" style="display: none;">
+            <h2 class="text-center mb-4">Complete Your Plan Selection</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="hidden" id="selectedPlan" name="selected_plan">
+                    {{form.as_p}}
+                </div>
+                <button type="submit" class="select-plan-btn">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        function selectPlan(plan) {
+            document.getElementById('selectedPlan').value = plan;
+            document.getElementById('planForm').style.display = 'block';
+            document.getElementById('planForm').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
