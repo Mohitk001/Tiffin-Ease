@@ -7,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -263,28 +264,64 @@
         }
 
         .social-links {
-            display: flex;
-            gap: 15px;
-        }
+    display: flex;
+    gap: 15px;
+}
 
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
+.social-links {
+    display: flex;
+    gap: 15px;
+}
 
-        .social-link:hover {
-            transform: translateY(-5px);
-            background: var(--secondary);
-            color: white;
-        }
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+}
+
+/* Facebook */
+.social-link:hover .fa-facebook {
+    color: white;
+}
+.social-link:hover:nth-child(1) {
+    background-color: #3b5998;
+}
+
+/* X (Twitter) */
+.social-link:hover .fa-x-twitter {
+    color: white;
+}
+.social-link:hover:nth-child(2) {
+    background-color: #000000;
+}
+
+/* Instagram */
+.social-link:hover .fa-instagram {
+    color: white;
+}
+.social-link:hover:nth-child(3) {
+    background-color: #e1306c;
+}
+
+/* LinkedIn */
+.social-link:hover .fa-linkedin {
+    color: white;
+}
+.social-link:hover:nth-child(4) {
+    background-color: #0077b5;
+}
+
 
         .footer-divider {
             margin: 30px 0;
@@ -354,7 +391,7 @@
                     <h5>Connect With Us</h5>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-x-twitter"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
                     </div>

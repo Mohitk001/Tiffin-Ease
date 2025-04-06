@@ -1,0 +1,121 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .payment-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        text-align: center;
+    }
+    .payment-animation {
+        display: none;
+        margin: 20px auto;
+    }
+    .payment-details {
+        transition: all 0.3s ease;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background: white;
+    }
+    .payment-details:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .processing-animation {
+        display: none;
+        margin: 20px auto;
+    }
+    .processing-animation .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .success-animation {
+        display: none;
+        color: #2ecc71;
+        font-size: 24px;
+        margin: 20px auto;
+    }
+    .rider-details {
+        display: none;
+        margin: 20px auto;
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+        max-width: 400px;
+    }
+    .rider-details h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+    .rider-details p {
+        margin: 8px 0;
+        color: #34495e;
+    }
+</style>
+
+<div class="payment-container">
+    <div class="payment-details">
+        <h2>Order Summary</h2>
+        <p>Plan Type: {{ plan_type }}</p>
+        <p>Amount: ₹{{ amount }}</p>
+        <button class="btn btn-primary" onclick="processPayment()">Proceed to Payment</button>
+    </div>
+
+    <div class="processing-animation">
+        <div class="spinner"></div>
+        <p>Processing your payment...</p>
+    </div>
+
+    <div class="success-animation">
+        <i class="fas fa-check-circle"></i>
+        <p>Payment Successful!</p>
+    </div>
+
+    <div class="rider-details">
+        <h3>Your Delivery Partner</h3>
+        <p><strong>Name:</strong> {{ vendor_name }}</p>
+        <p><strong>Contact:</strong> {{ vendor_phone }}</p>
+        <p class="text-muted">Your order details have been shared with your delivery partner</p>
+    </div>
+</div>
+
+<script>
+function processPayment() {
+    const paymentDetails = document.querySelector('.payment-details');
+    const processingAnimation = document.querySelector('.processing-animation');
+    const successAnimation = document.querySelector('.success-animation');
+
+    // Start the payment flow
+    paymentDetails.style.opacity = '0.5';
+    processingAnimation.style.display = 'block';
+
+    // Simulate payment processing (3 seconds)
+    setTimeout(() => {
+        processingAnimation.style.display = 'none';
+        successAnimation.style.display = 'block';
+        
+        // Show rider details after 1 second
+        setTimeout(() => {
+            document.querySelector('.rider-details').style.display = 'block';
+        }, 1000);
+
+        // Redirect to home page after 5 seconds
+        setTimeout(() => {
+            window.location.href = "{% url 'loggedin' %}";
+        }, 5000);
+    }, 3000);
+}
+</script>
+{% endblock %}

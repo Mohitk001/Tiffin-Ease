@@ -5,6 +5,7 @@ from .forms import CustomerForm
 from django.contrib import messages
 from vendorPortal.models import Vendor
 from vendorPortal.views import *
+from django.urls import reverse
 import random
 
 
@@ -48,7 +49,10 @@ def allotPlans(request, planType, cost):
                 vendor_phone = allot.Vendor_Phone
                 messages.success(request, f"{vendor_name} is your delivery executive. Contact details: {vendor_phone}.")
                 
-                return redirect('Free')
+                # Redirect to payment page instead of Free
+                request.session['vendor_name'] = vendor_name
+                request.session['vendor_phone'] = vendor_phone
+                return redirect('payment', plan_type=planType, amount=cost)
             except Exception as e:
                 messages.error(request, f"An error occurred: {str(e)}")
         else:
@@ -109,6 +113,15 @@ def LastPage(request):
 
 def FreePage(request):
     return render(request,'customers/free.html')
+
+def payment_page(request, plan_type, amount):
+    context = {
+        'plan_type': plan_type,
+        'amount': amount,
+        'vendor_name': request.session.get('vendor_name', ''),
+        'vendor_phone': request.session.get('vendor_phone', '')
+    }
+    return render(request, 'customers/payment.html', context)
 
 # obj = Customer.objects.all()
 # # print(obj[0].pk)
