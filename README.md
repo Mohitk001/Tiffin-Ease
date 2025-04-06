@@ -3,7 +3,7 @@
 [Tiffin Ease](https://tiffin-ease.onrender.com/) is a Django-based web application designed to streamline the online ordering and management of tiffin (meal) services. It provides an interactive interface for customers, vendors, and administrators to manage and track orders efficiently.
 
 ### 🔗 Live Demo
-🌐 **Check out the live project here**: [https://tiffin-ease.onrender.com/](https://tiffin-ease.onrender.com/)
+🌐 **Check out the live project here**: [https://tiffin-ease.onrender.com/](https://tiffin-ease.onrender.com)
 
 ---
 
