@@ -11,7 +11,10 @@
 </li>
 {% else %}
 <li class="nav-item">
-    <a href="{% url 'admin:index' %}" class="nav-link">Login</a>
+    <a href="{% url 'login' %}" class="nav-link">Login</a>
+</li>
+<li class="nav-item">
+    <a href="{% url 'register' %}" class="nav-link">Register</a>
 </li>
 {% endif %}
 {% endblock %}
@@ -38,103 +41,149 @@
         animation: fadeInUp 1s ease;
     }
 
-    .welcome-popup {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-        color: white;
+    .cta-buttons {
+        margin-top: 2rem;
+    }
+
+    .cta-button {
+        display: inline-block;
         padding: 1rem 2rem;
-        border-radius: 50px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        animation: slideDown 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .welcome-popup h2 {
-        font-size: 1.5rem;
-        margin: 0;
-        font-weight: 600;
-    }
-
-    .welcome-popup p {
-        margin: 0;
-        font-size: 1rem;
-    }
-
-    .welcome-message {
-        text-align: center;
-        margin: 2rem auto;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-        color: white;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        animation: slideIn 1s ease;
-    }
-
-    .welcome-message h2 {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-        font-weight: 700;
-    }
-
-    .welcome-message p {
+        margin: 0 1rem;
+        border-radius: 30px;
         font-size: 1.2rem;
-        margin: 0;
-        opacity: 0.9;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
     }
 
-    .plan-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: none;
+    .cta-primary {
+        background-color: #ff6b6b;
+        color: white;
+        border: 2px solid #ff6b6b;
+    }
+
+    .cta-primary:hover {
+        background-color: #ff8e8e;
+        border-color: #ff8e8e;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .cta-secondary {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+    }
+
+    .cta-secondary:hover {
+        background-color: white;
+        color: #ff6b6b;
+        transform: translateY(-2px);
+    }
+
+    /* Existing styles remain the same */
+    .flip-card {
+        perspective: 1000px;
+        background-color: transparent;
+        height: 350px;
+        margin-bottom: 1rem;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
         border-radius: 15px;
         overflow: hidden;
-        margin-bottom: 2rem;
     }
 
-    .plan-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    .flip-card-front {
+        background-color: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
-    .plan-card .card-img-top {
+    .flip-card-back {
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        transform: rotateY(180deg);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dish-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .dish-list li {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .dish-list li:hover {
+        transform: scale(1.05);
+    }
+
+    .card-img-top {
         height: 200px;
         object-fit: cover;
     }
 
-    .plan-card .card-body {
-        padding: 1.5rem;
-        background: white;
-    }
-
-    .plan-card .card-text {
-        color: #666;
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-    }
-
     .plan-button {
         display: inline-block;
-        padding: 0.8rem 2rem;
-        background: #ff6b6b;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
         color: white;
-        border-radius: 25px;
+        border-radius: 50px;
         text-decoration: none;
         transition: all 0.3s ease;
         border: none;
         font-weight: 600;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
     }
 
     .plan-button:hover {
-        background: #ff5252;
+        background: linear-gradient(135deg, #ff8e8e, #ff6b6b);
         color: white;
-        transform: scale(1.05);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+    }
+
+    .plan-info {
+        text-align: center;
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+
+    .plan-price {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #ff6b6b;
+        margin-bottom: 1rem;
+        display: block;
     }
 
     .section-title {
@@ -156,37 +205,6 @@
         }
     }
 
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideDown {
-        from {
-            transform: translate(-50%, -100%);
-            opacity: 0;
-        }
-        to {
-            transform: translate(-50%, 0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
-    }
-
     @media (max-width: 768px) {
         .welcome-text {
             font-size: 2.5rem;
@@ -194,104 +212,195 @@
         .welcome-section {
             height: 40vh;
         }
-        .plan-card {
+        .flip-card {
             margin: 1rem;
         }
     }
 </style>
 
 <div class="welcome-section">
-    <div class="welcome-text">
-        Welcome to Tiffin Service
+    <div class="container">
+        {% if request.user.is_authenticated %}
+            <h1 class="welcome-text">Welcome back, {{ request.user.username }}!</h1>
+            <div class="cta-buttons">
+                <a href="{% url 'PlanSelect' %}" class="cta-button cta-primary">View Your Plan</a>
+                <a href="#meal-plans" class="cta-button cta-secondary">Explore Plans</a>
+            </div>
+        {% else %}
+            <h1 class="welcome-text">Delicious Tiffin Service at Your Doorstep</h1>
+            <div class="cta-buttons">
+                <a href="{% url 'login' %}" class="cta-button cta-primary">Get Started</a>
+                <a href="#meal-plans" class="cta-button cta-secondary">View Plans</a>
+            </div>
+        {% endif %}
     </div>
 </div>
 
-<div class="welcome-popup">
-    <h2>Welcome, {{ request.user }}! 👋</h2>
-    <p>Ready to explore our delicious meal plans? 🍽️</p>
-</div>
-
-<div class="container">
+<div class="container" id="meal-plans">
     <h2 class="section-title">Choose Your Meal Plan</h2>
     
     <div class="row">
         <div class="col-md-4">
-            <div class="plan-card card">
-                <img class="card-img-top" src="{% static 'images/free1.jpg' %}" alt="Free Trial">
-                <div class="card-body">
-                    <h5 class="card-title">Free Trial</h5>
-                    <p class="card-text">Experience our service with a 2-day free trial plan.</p>
-                    <div class="text-center">
-                        <a href="{% url 'Free' %}" class="plan-button">Start Free Trial</a>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/free1.jpg' %}" class="card-img-top" alt="Free Trial">
+                        <div class="card-body">
+                            <h5 class="card-title">Free Trial</h5>
+                            <p class="card-text">Experience our service with a 2-day free trial plan.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Featured Dishes</h3>
+                        <ul class="dish-list">
+                            <li>Paneer Butter Masala</li>
+                            <li>Mixed Vegetable Curry</li>
+                            <li>Dal Makhani</li>
+                            <li>Veg Biryani</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            <div class="plan-info">
+                <span class="plan-price">Free</span>
+                <a href="{% url 'Free' %}" class="plan-button">Start Trial</a>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="plan-card card">
-                <img class="card-img-top" src="{% static 'images/thali_1.jpg' %}" alt="2 Weeks Veg">
-                <div class="card-body">
-                    <h5 class="card-title">2 Weeks Vegetarian</h5>
-                    <p class="card-text">Perfect for trying out our vegetarian menu.</p>
-                    <div class="text-center">
-                        <a href="{% url 'TwoWeekVeg' %}" class="plan-button">₹499</a>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/thali_1.jpg' %}" class="card-img-top" alt="2 Weeks Veg">
+                        <div class="card-body">
+                            <h5 class="card-title">2 Weeks Vegetarian</h5>
+                            <p class="card-text">Perfect for trying out our vegetarian menu.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Featured Dishes</h3>
+                        <ul class="dish-list">
+                            <li>Shahi Paneer</li>
+                            <li>Veg Kofta</li>
+                            <li>Dal Tadka</li>
+                            <li>Jeera Rice</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            <div class="plan-info">
+                <span class="plan-price">₹499</span>
+                <a href="{% url 'TwoWeekVeg' %}" class="plan-button">Select Plan</a>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="plan-card card">
-                <img class="card-img-top" src="{% static 'images/th3.jpg' %}" alt="1 Month Veg">
-                <div class="card-body">
-                    <h5 class="card-title">1 Month Vegetarian</h5>
-                    <p class="card-text">A month of delicious vegetarian meals.</p>
-                    <div class="text-center">
-                        <a href="{% url 'OneMonthVeg' %}" class="plan-button">₹799</a>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/th3.jpg' %}" class="card-img-top" alt="1 Month Veg">
+                        <div class="card-body">
+                            <h5 class="card-title">1 Month Vegetarian</h5>
+                            <p class="card-text">A month of delicious vegetarian meals.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Featured Dishes</h3>
+                        <ul class="dish-list">
+                            <li>Malai Kofta</li>
+                            <li>Palak Paneer</li>
+                            <li>Mix Veg</li>
+                            <li>Veg Pulao</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            <div class="plan-info">
+                <span class="plan-price">₹799</span>
+                <a href="{% url 'OneMonthVeg' %}" class="plan-button">Select Plan</a>
             </div>
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-md-4">
-            <div class="plan-card card">
-                <img class="card-img-top" src="{% static 'images/th25.jpg' %}" alt="1 Month Veg+NonVeg">
-                <div class="card-body">
-                    <h5 class="card-title">1 Month Veg + Non-Veg</h5>
-                    <p class="card-text">The perfect balance of vegetarian and non-vegetarian meals.</p>
-                    <div class="text-center">
-                        <a href="{% url 'OneMonthVegNonVeg' %}" class="plan-button">₹999</a>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/th25.jpg' %}" class="card-img-top" alt="1 Month Veg+NonVeg">
+                        <div class="card-body">
+                            <h5 class="card-title">1 Month Veg + Non-Veg</h5>
+                            <p class="card-text">The perfect balance of vegetarian and non-vegetarian meals.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Featured Dishes</h3>
+                        <ul class="dish-list">
+                            <li>Butter Chicken</li>
+                            <li>Paneer Tikka</li>
+                            <li>Fish Curry</li>
+                            <li>Mixed Rice</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            <div class="plan-info">
+                <span class="plan-price">₹999</span>
+                <a href="{% url 'OneMonthVegNonVeg' %}" class="plan-button">Select Plan</a>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="plan-card card">
-                <img class="card-img-top" src="{% static 'images/th24.jpg' %}" alt="3 Months Veg">
-                <div class="card-body">
-                    <h5 class="card-title">3 Months Vegetarian</h5>
-                    <p class="card-text">Long-term vegetarian meal plan with great value.</p>
-                    <div class="text-center">
-                        <a href="{% url 'ThreeMonthVeg' %}" class="plan-button">₹2499</a>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/th24.jpg' %}" class="card-img-top" alt="3 Months Veg">
+                        <div class="card-body">
+                            <h5 class="card-title">3 Months Vegetarian</h5>
+                            <p class="card-text">Long-term vegetarian meal plan with great value.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Featured Dishes</h3>
+                        <ul class="dish-list">
+                            <li>Paneer Masala</li>
+                            <li>Veg Biryani</li>
+                            <li>Dal Fry</li>
+                            <li>Aloo Gobi</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            <div class="plan-info">
+                <span class="plan-price">₹2499</span>
+                <a href="{% url 'ThreeMonthVeg' %}" class="plan-button">Select Plan</a>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="plan-card card">
-                <img class="card-img-top" src="{% static 'images/th16.jpg' %}" alt="3 Months Veg+NonVeg">
-                <div class="card-body">
-                    <h5 class="card-title">3 Months Veg + Non-Veg</h5>
-                    <p class="card-text">Our most comprehensive long-term meal plan.</p>
-                    <div class="text-center">
-                        <a href="{% url 'ThreeMonthVegNonveg' %}" class="plan-button">₹2699</a>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/th16.jpg' %}" class="card-img-top" alt="3 Months Veg+NonVeg">
+                        <div class="card-body">
+                            <h5 class="card-title">3 Months Veg + Non-Veg</h5>
+                            <p class="card-text">Our most comprehensive long-term meal plan.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Featured Dishes</h3>
+                        <ul class="dish-list">
+                            <li>Chicken Curry</li>
+                            <li>Mutton Biryani</li>
+                            <li>Fish Fry</li>
+                            <li>Egg Curry</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            <div class="plan-info">
+                <span class="plan-price">₹2699</span>
+                <a href="{% url 'ThreeMonthVegNonveg' %}" class="plan-button">Select Plan</a>
             </div>
         </div>
     </div>

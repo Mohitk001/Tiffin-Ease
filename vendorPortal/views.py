@@ -25,6 +25,9 @@ def indexVendor(request, id):
     context = {'name':obj.Vendor_Name, 'customers':customers}
     return render(request,"vendorPortal/index.html", context)
 
+def vendorLogout(request):
+    return redirect('vendorLogin')
+
 def vendorLogin(request):
     form = VendorLoginForm()
     check=0

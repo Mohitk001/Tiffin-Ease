@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-&-dpc*ch(6z2&@j#-rz#pa_!r@!#ow#qn1j#1t=ld4@9zt2$7&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tiffin-ease.onrender.com', 'www.tiffin-ease.onrender.com','127.0.0.1:8000','127.0.0.1']
+
 
 
 # Application definition
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'homepage',
     'customers',
     'vendorPortal'

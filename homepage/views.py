@@ -34,14 +34,13 @@ def index(request):
     context = {'page':page}
     return render(request, "homepage/index.html", context)
 
-@login_required(login_url='login')
 def loggedIn(request):
     return render(request,"homepage/loggedin.html")
 
 @login_required(login_url='login')
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('loggedin')
 
 # user = Customer.objects.get(id =pk)
 # print(user)
