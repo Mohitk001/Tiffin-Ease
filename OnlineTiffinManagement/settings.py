@@ -52,7 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'OnlineTiffinManagement.urls'
 
@@ -121,12 +123,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+# For static files like CSS, JS
+
+  # used by collectstatic in production
+
+# For media files like uploaded images
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,"static")
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # for dev
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
